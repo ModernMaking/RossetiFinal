@@ -9,3 +9,93 @@ print(?b)
 print("No aceleration")
 (?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration '0'^^http://www.w3.org/2001/XMLSchema#double)
 ]
+
+
+[
+AirResistancePositiveA:
+(?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed ?v)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewAceleration)
+product(?v, ?v ?v2)
+product(?v2, '0.01'^^http://www.w3.org/2001/XMLSchema#double,?minusa)
+greaterThan(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+notEqual(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+difference(?a,?minusa, ?newa)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA)
+->
+print("Air resistance +")
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewAceleration ?newa)
+print("a=",?a," newa=",?newa," v=",?v)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA  'true'^^http://www.w3.org/2001/XMLSchema#boolean)
+]
+
+[
+AirResistanceNegativeA:
+(?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed ?v)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration ?a)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewAceleration)
+product(?v, ?v ?v2)
+product(?v2, '0.01'^^http://www.w3.org/2001/XMLSchema#double,?minusa)
+lessThan(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+notEqual(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+sum(?a,?minusa, ?newa)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA)
+print("Air resistance -")
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA)
+->
+print("a=",?a," newa=",?newa," v=",?v)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewAceleration ?newa)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA  'true'^^http://www.w3.org/2001/XMLSchema#boolean)
+]
+
+[
+ZeroAcelerate:
+(?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasID ?id)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate ?b)
+equal(?b, 'false'^^http://www.w3.org/2001/XMLSchema#boolean)
+->
+print("Zero acelerate")
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration '0'^^http://www.w3.org/2001/XMLSchema#double)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate 'true'^^http://www.w3.org/2001/XMLSchema#boolean)
+]
+
+[
+AirResistancePositiveA:
+(?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed ?v)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration ?a)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewAceleration)
+product(?v, ?v ?v2)
+product(?v2, '0.001'^^http://www.w3.org/2001/XMLSchema#double,?minusa)
+greaterThan(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+notEqual(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+difference(?a,?minusa, ?newa)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA)
+->
+print("Air resistance +")
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewAceleration ?newa)
+print("a=",?a," newa=",?newa," v=",?v)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA  'true'^^http://www.w3.org/2001/XMLSchema#boolean)
+]
+
+[
+AirResistanceNegativeA:
+(?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed ?v)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration ?a)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewAceleration)
+product(?v, ?v ?v2)
+product(?v2, '0.001'^^http://www.w3.org/2001/XMLSchema#double,?minusa)
+lessThan(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+notEqual(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+sum(?a,?minusa, ?newa)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA)
+print("Air resistance -")
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA)
+->
+print("a=",?a," newa=",?newa," v=",?v)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewAceleration ?newa)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#noCalcA  'true'^^http://www.w3.org/2001/XMLSchema#boolean)
+]

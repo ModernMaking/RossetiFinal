@@ -24,6 +24,7 @@
   <script>
     pressed = false;
     currx = 100
+    degree = 0
     p = document.getElementsByTagName("a-sphere")[0].getAttribute('position')
     function setX(x) {
       p.x = x
@@ -33,7 +34,7 @@
     {
       speed = s
     }
-    setInterval(()=> {console.log("Pressed: "+pressed); $.post('getSpeed.php', "pressed="+((pressed) ? "true" : "false"), function (data){console.log("Speed: "+data+" x:"+p.x); speed = parseFloat(data);}); p.x+=speed; p.z+=speed;},100)
+    setInterval(()=> {console.log("Pressed: "+pressed); $.post('getSpeed.php', "pressed="+((pressed) ? "true" : "false"), function (data){console.log("Speed: "+data+" x:"+p.x); speed = parseFloat(data);}); p.x+=speed*Math.cos(degree*3.14/180); p.z+=speed*Math.sin(degree*3.14/180);},100)
 
   </script>
   </body>

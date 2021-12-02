@@ -23,6 +23,7 @@ public class Test {
         server.createContext("/test", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
+        o.addObject("1");
     }
 
     private static String createResponse(String requestMethod) {
@@ -39,14 +40,14 @@ public class Test {
         @Override
         public void handle(HttpExchange t) throws IOException {
             float speed = 0;
-            o.addObject("1");
+
 
             //String text = problem.getFullText();
             //System.out.println(text);
 
             String method = t.getRequestMethod();
 
-            System.out.println(t.getRequestBody().toString());
+            //System.out.println(t.getRequestBody().toString());
             byte [] b = new byte[1000];
             InputStream is = t.getRequestBody();
 
@@ -55,7 +56,7 @@ public class Test {
             while((ch = is.read()) != -1)
                 sb.append((char)ch);
             String inputString = sb.toString();
-            System.out.println("String: "+inputString);
+            //System.out.println("String: "+inputString);
             if (sb.length()>0) {
 
                 HashMap<String, String> param_value = new HashMap<String, String>();
@@ -67,7 +68,7 @@ public class Test {
 
                 String pressed = param_value.get("pressed");
                 System.out.println("Pressed: "+pressed);
-                speed = o.getSpeed("1", (pressed=="true"));
+                speed = o.getSpeed("1", (pressed.equals("true")));
             }
 
 
