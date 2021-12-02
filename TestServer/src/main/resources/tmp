@@ -1,0 +1,11 @@
+[
+NoAcelerate:
+(?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate ?b)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration ?a)
+equal(?b, 'false'^^http://www.w3.org/2001/XMLSchema#boolean)
+->
+print(?b)
+print("No aceleration")
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration '0'^^http://www.w3.org/2001/XMLSchema#double)
+]
