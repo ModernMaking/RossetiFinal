@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function frameload() {
+            var iframe = document.getElementsByTagName('iframe')[0];
+            iframe.contentWindow.setX(5)
+        }
+        function updateX()
+        {
+            var num = document.getElementsByTagName("input")[0].value
+            flnum = parseFloat(num)
+            var iframe = document.getElementsByTagName('iframe')[0];
+            iframe.contentWindow.setX(flnum)
+        }
+        function changeSpeed()
+        {
+            var num = document.getElementsByTagName("input")[1].value
+            flnum = parseFloat(num)
+            var iframe = document.getElementsByTagName('iframe')[0];
+            iframe.contentWindow.setSpeed(flnum)
+        }
+    </script>
+</head>
+<body>
+    X: <input style="font-size: xx-large;" type="number" min="-10" max="10" step="0.1" onchange="updateX()">
+    Speed: <input style="font-size: xx-large"; type="number" min="-1" max="1" step="0.05" onchange="changeSpeed()">
+    <iframe width="1200" height="800" src="vr.html" onload="frameload();"></iframe>
+    <br><br>
+    Ускоряться: <input type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.pressed = this.checked; console.log(this.checked)" name="active">
+</body>
+
+</html>

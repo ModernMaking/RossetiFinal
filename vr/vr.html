@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  <p id="x">XXXXXXXXXXXXXXXXXXXXXXX</p>
+  <p id="y">YYYYYYYYYYYYYYYYYYYYYYY</p>
+  <p id="z">ZZZZZZZZZZZZZZZZZZZZZZZ</p>
+
+    <a-scene>
+
+      <a-assets>
+        <img id="my-image" src="b.png">
+      </a-assets>
+
+      <a-text value="Now Interactable"  scale="2 2 1" position="-2 2 -4" rotation="-20 0 0"></a-text>
+      <a-sphere position="0 1.25 -10" radius="2.25" color="#EF2D5E"></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" style="background: url('b.png');"></a-cylinder>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-sky color="#31AAC0"></a-sky>
+    </a-scene>
+
+  <script>
+    pressed = false;
+    currx = 100
+    p = document.getElementsByTagName("a-sphere")[0].getAttribute('position')
+    function setX(x) {
+      p.x = x
+    }
+    speed = 0;
+    function setSpeed(s)
+    {
+      speed = s
+    }
+    setInterval(()=> {console.log("Pressed: "+pressed); $.post('getSpeed.php', "pressed="+((pressed) ? "true" : "false"), function (data){console.log("Speed: "+data+" x:"+p.x); speed = parseFloat(data);}); p.x+=speed; p.z+=speed;},100)
+
+  </script>
+  </body>
+
+</html>
