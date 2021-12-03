@@ -22,6 +22,17 @@
             var iframe = document.getElementsByTagName('iframe')[0];
             iframe.contentWindow.setSpeed(flnum)
         }
+        document.addEventListener('keydown', function(event){
+            console.log('Key: ', event.key);
+            if (event.key == "a") {
+                document.getElementById("setAngle").value = parseFloat(document.getElementById("setAngle").value) - 1;
+                console.log("A value: "+document.getElementById("setAngle").value)
+            }
+            if (event.key == "d") {
+                document.getElementById("setAngle").value = parseFloat(document.getElementById("setAngle").value) + 1;
+                console.log("D value: " + document.getElementById("setAngle").value)
+            }
+        });
     </script>
 </head>
 <body>
@@ -30,7 +41,10 @@
     <iframe width="1200" height="800" src="vr.html" onload="frameload();"></iframe>
     <br><br>
     Ускоряться: <input type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.pressed = this.checked; console.log(this.checked)" name="active"><br>
-    Угол поворота: <input type="range" min="-180" max="180" name="degree" step="1" onchange="var iframe = document.getElementsByTagName('iframe')[0]; iframe.contentWindow.degree = this.value;"><br>
+    <button value="Ускориться" onclick="">Ускориться</button>
+    Угол поворота: <input id="setAngle" type="range" min="-10" max="10" name="degree" step="0.01" value="0" onchange="var iframe = document.getElementsByTagName('iframe')[0]; iframe.contentWindow.add_degree = parseFloat(this.value);"><br>
+    <div id="messages">
+    </div>
 </body>
 
 </html>

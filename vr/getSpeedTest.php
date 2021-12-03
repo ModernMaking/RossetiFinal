@@ -8,11 +8,12 @@ for ($i=0; $i<=1000; $i++) {
         'http' => array(
             'method' => 'POST',
             'header' => 'Content-type: application/x-www-form-urlencoded',
-            'content' => http_build_query(["pressed" => "true"])
+            'content' => http_build_query(["pressed" => "true", "tracksin" => 0.9])
         )
     )));
     $obj = json_decode($result);
     echo $obj->speed;
+    echo " Message: ".$obj->message;
     $t2 = microtime(true);
     $difft = $t2-$t1;
     echo " Время: ".$difft;

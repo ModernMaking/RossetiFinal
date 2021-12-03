@@ -93,6 +93,7 @@ public class Ontology {
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration"), inf.createTypedLiteral(0.05) );
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#isCalculated"), inf.createTypedLiteral(false) );
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate"), inf.createTypedLiteral(false));
+            fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasTrackSinus"), inf.createTypedLiteral(0.0) );
         }
 
         while (rs.hasNext())
@@ -103,8 +104,10 @@ public class Ontology {
         return null;
     }
 
-    public float getSpeed(String id, boolean accelerate)
+    public ObjState getSpeed(String id, boolean accelerate, float trackSin)
     {
+        ObjState result = new ObjState();
+        result.message = "";
         Resource fly = addObject(id);
         //fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewSpeed")).remove();//.changeLiteralObject((double) 0);
         infModel = ModelFactory.createInfModel(reasoner, inf);
@@ -133,11 +136,31 @@ public class Ontology {
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed")).changeLiteralObject(v);
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration")).changeLiteralObject((accelerate) ? 0.05 : 0);
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate")).changeLiteralObject((accelerate));
+            fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasTrackSinus")).changeLiteralObject(trackSin);
+
 
             //System.out.println(accelerate ? "acelerate" : "not acelerate");
-            return v;
+            //return v;
+            result.speed = v;
         }
-        return 0;
+
+        String queryString1 = "PREFIX fo: <http://www.semanticweb.org/dns/ontologies/2021/10/fly#> " +
+                "SELECT ?m" +
+                " WHERE { " +
+                "?o a fo:PhysicalObject ."+
+                "?o fo:hasID  \"" + id +"\" ." +
+                "?o fo:hasMessage ?m ." +
+                " }";
+        Query query1 = QueryFactory.create(queryString1);
+        QueryExecution qExec1 = QueryExecutionFactory.create(query1, infModel);
+        ResultSet rs1 = qExec1.execSelect();
+        if (rs1.hasNext()) {
+            QuerySolution qs1 = rs1.next();
+            String message = qs1.get("?m").asLiteral().getString();
+            result.message = message;
+        }
+
+        return result;
 
     }
 

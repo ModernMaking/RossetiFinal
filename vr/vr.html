@@ -25,6 +25,7 @@
     pressed = false;
     currx = 100
     degree = 0
+    add_degree = 0
     p = document.getElementsByTagName("a-sphere")[0].getAttribute('position')
     function setX(x) {
       p.x = x
@@ -34,7 +35,7 @@
     {
       speed = s
     }
-    setInterval(()=> {console.log("Pressed: "+pressed); $.post('getSpeed.php', "pressed="+((pressed) ? "true" : "false"), function (data){console.log("Speed: "+data+" x:"+p.x); speed = parseFloat(data);}); p.x+=speed*Math.cos(degree*3.14/180); p.z+=speed*Math.sin(degree*3.14/180);},100)
+    setInterval(()=> { degree+=add_degree; $.post('getSpeed.php', "tracksin="+Math.abs(Math.sin(parseFloat(add_degree)*3.14/180))+"&pressed="+((pressed) ? "true" : "false"), function (data){ obj=JSON.parse(data); speed = parseFloat(obj.speed); console.log(obj.message)}); p.x+=speed*Math.cos(degree*3.14/180); p.z+=speed*Math.sin(degree*3.14/180);},100)
 
   </script>
   </body>
