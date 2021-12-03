@@ -90,7 +90,7 @@ public class Ontology {
             fly.addOntClass(inf.getOntClass("http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject"));
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasID"), id);
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed"), inf.createTypedLiteral(0.005) );
-            fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration"), inf.createTypedLiteral(0.05) );
+            fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration"), inf.createTypedLiteral(0.1) );
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#isCalculated"), inf.createTypedLiteral(false) );
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate"), inf.createTypedLiteral(false));
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasTrackSinus"), inf.createTypedLiteral(0.0) );
@@ -134,7 +134,7 @@ public class Ontology {
             float v = qs.get("?v").asLiteral().getFloat();
             float a = qs.get("?a").asLiteral().getFloat();
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed")).changeLiteralObject(v);
-            fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration")).changeLiteralObject((accelerate) ? 0.05 : 0);
+            fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration")).changeLiteralObject((accelerate) ? 0.2 : 0);
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate")).changeLiteralObject((accelerate));
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasTrackSinus")).changeLiteralObject(trackSin);
 

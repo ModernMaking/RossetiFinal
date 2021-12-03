@@ -33,6 +33,7 @@
                 console.log("D value: " + document.getElementById("setAngle").value)
             }
         });
+        const ut = new SpeechSynthesisUtterance('доброе утро');
     </script>
 </head>
 <body>
@@ -43,7 +44,113 @@
     Ускоряться: <input type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.pressed = this.checked; console.log(this.checked)" name="active"><br>
     <button value="Ускориться" onclick="">Ускориться</button>
     Угол поворота: <input id="setAngle" type="range" min="-10" max="10" name="degree" step="0.01" value="0" onchange="var iframe = document.getElementsByTagName('iframe')[0]; iframe.contentWindow.add_degree = parseFloat(this.value);"><br>
+    <script>
+        setInterval( () => {
+            var iframe = document.getElementsByTagName('iframe')[0];
+            msg = iframe.contentWindow.curr_message;
+
+            if (document.getElementById("messages").innerText != msg)
+            {
+                ut1 = new SpeechSynthesisUtterance(msg);
+                ut1.pitch = 1;  // пониже
+                ut1.rate = 3;   // побыстрее
+                speechSynthesis.speak(ut1);
+            }
+
+            document.getElementById("messages").innerText = msg;
+            //speechSynthesis.speak(ut);
+            }, 100
+        )
+
+        function speak(text) {
+            const message = new SpeechSynthesisUtterance();
+            message.lang = "ru-RU";
+            // голос женский
+            message.voice = getVoice("Milena");
+            // или мужской
+            // message.voice = getVoice("Yuri");
+            message.text = text;
+            // тембр и скорость по вкусу
+            message.pitch = 0.8;
+            message.rate = 0.9;
+            window.speechSynthesis.speak(message);
+        }
+
+        function getVoice(name) {
+            const voices = window.speechSynthesis.getVoices();
+            for (const voice of voices) {
+                if (voice.name == name) {
+                    return voice;
+                }
+            }
+            return null;
+        }
+
+        function printVoices() {
+            const voices = window.speechSynthesis.getVoices();
+            for (const voice of voices) {
+                if (voice.lang == "ru-RU") {
+                    console.log(voice);
+                }
+            }
+        }
+
+        function splitArticle(elems) {
+            const sentences = [];
+            for (const el of elems) {
+                const par = splitParagraph(el)
+                    .map(s => s.trim())
+                    .filter(s => s.trim().length > 0);
+                sentences.push(...par);
+            }
+            return sentences;
+        }
+
+        function splitParagraph(el) {
+            return el.innerText.split(/[.?!;:]/);
+        }
+
+
+
+        //const sentences = splitArticle(text);
+        //for (const sentence of sentences) {
+          //  speak(sentence);
+        //}
+
+        //const btnSpeak = document.querySelector("#speak");
+        //const btnPlay = document.querySelector("#playpause");
+        //const article = document.querySelector("#article");
+
+        /*
+        btnPlay.addEventListener("click", () => {
+            if (btnPlay.dataset.playing != undefined) {
+                window.speechSynthesis.pause();
+                delete btnPlay.dataset.playing;
+                btnPlay.innerHTML = "▶️";
+            } else {
+                window.speechSynthesis.resume();
+                btnPlay.dataset.playing = "";
+                btnPlay.innerHTML = "⏸️";
+            }
+        });
+        */
+
+        /*
+        btnSpeak.addEventListener("click", () => {
+            const sentences = splitArticle(article.children);
+            btnPlay.style.display = null;
+            for (const sentence of sentences) {
+                speak(sentence);
+            }
+        });*/
+
+
+
+        window.speechSynthesis.getVoices();
+
+    </script>
     <div id="messages">
+        доброе утро
     </div>
 </body>
 

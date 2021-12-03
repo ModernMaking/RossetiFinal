@@ -22,6 +22,7 @@
     </a-scene>
 
   <script>
+    curr_message = ""
     pressed = false;
     currx = 100
     degree = 0
@@ -35,7 +36,7 @@
     {
       speed = s
     }
-    setInterval(()=> { degree+=add_degree; $.post('getSpeed.php', "tracksin="+Math.abs(Math.sin(parseFloat(add_degree)*3.14/180))+"&pressed="+((pressed) ? "true" : "false"), function (data){ obj=JSON.parse(data); speed = parseFloat(obj.speed); console.log(obj.message)}); p.x+=speed*Math.cos(degree*3.14/180); p.z+=speed*Math.sin(degree*3.14/180);},100)
+    setInterval(()=> { degree+=add_degree; $.post('getSpeed.php', "tracksin="+Math.abs(Math.sin(parseFloat(add_degree)*3.14/180))+"&pressed="+((pressed) ? "true" : "false"), function (data){ obj=JSON.parse(data); speed = parseFloat(obj.speed); console.log(obj.message); curr_message=obj.message}); p.x+=speed*Math.cos(degree*3.14/180); p.z+=speed*Math.sin(degree*3.14/180);},100)
 
   </script>
   </body>
