@@ -32,6 +32,14 @@
                 document.getElementById("setAngle").value = parseFloat(document.getElementById("setAngle").value) + 1;
                 console.log("D value: " + document.getElementById("setAngle").value)
             }
+            if (event.key == "s")
+            {
+                document.getElementById("inca").click();
+            }
+            if (event.key == "w")
+            {
+                document.getElementById("toup").click();
+            }
         });
         const ut = new SpeechSynthesisUtterance('доброе утро');
     </script>
@@ -41,12 +49,31 @@
     Speed: <input style="font-size: xx-large"; type="number" min="-1" max="1" step="0.05" onchange="changeSpeed()">
     <iframe width="1200" height="800" src="vr.html" onload="frameload();"></iframe>
     <br><br>
-    Ускоряться: <input type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.pressed = this.checked; console.log(this.checked)" name="active"><br>
+    Ускоряться: <input id="inca" type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.pressed = this.checked; console.log(this.checked)" name="active"><br>
 
-    Вверх: <input type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.up = this.checked; console.log(this.checked)" name="up"><br>
+    Вверх: <input id="toup" type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.up = this.checked; console.log(this.checked)" name="up"><br>
 
-    <button value="Ускориться" onclick="">Ускориться</button>
     Угол поворота: <input id="setAngle" type="range" min="-10" max="10" name="degree" step="0.01" value="0" onchange="var iframe = document.getElementsByTagName('iframe')[0]; iframe.contentWindow.add_degree = parseFloat(this.value);"><br>
+    <div id="upel" style="background: bisque">
+        <p>
+            Вверх
+        </p>
+    </div>
+
+    <div id="ael" style="background: bisque">
+        <p>
+            Ускориться
+        </p>
+    </div>
+
+    <div id="" style="background: bisque">
+        <p>
+            Вверх
+        </p>
+    </div>
+
+
+
     <script>
         setInterval( () => {
             var iframe = document.getElementsByTagName('iframe')[0];
@@ -54,11 +81,11 @@
 
             if (document.getElementById("messages").innerText != msg)
             {
-                if (msg != "Приземление" || iframe.contentWindow.vertical_speed<-0.2) {
+                if (msg != "Приземление" || iframe.contentWindow.vertical_speed<-1) {
 
                     if (msg=="Приземление")
                     {
-                        msg="Беспилотник разбился. Приземление было слишком жестким"
+                        msg="Беспилотник разбился. Посадка была жесткой."
                     }
 
                     ut1 = new SpeechSynthesisUtterance(msg);
