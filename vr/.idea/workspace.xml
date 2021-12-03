@@ -48,6 +48,7 @@
       <workItem from="1638500833243" duration="6788000" />
       <workItem from="1638511283470" duration="20665000" />
       <workItem from="1638552463144" duration="1190000" />
+      <workItem from="1638554879543" duration="4171000" />
     </task>
     <servers />
   </component>
@@ -59,5 +60,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1638472040304" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/vr.html</url>
+          <line>47</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

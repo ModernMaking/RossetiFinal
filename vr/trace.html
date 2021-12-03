@@ -8,7 +8,21 @@
     <h1>
         Трассировка полета
     </h1>
-    <iframe width="800px" height="800px" src="vr2.html"></iframe>
+    <table style="padding: 20px; margin: 20px;">
+        <tr>
+            <td style="font-size: xx-large;">
+                <font color="blue" > Длительность полета 00:15.12</font><br><br><br>
+                <font color="green" style="background: lightgreen;"><i>00:01.11</i> Успешно взлетел</font><br><br>
+                <font color="red"><i>00:05.35</i> Вошел в поворот на большой скорости</font><br><br>
+                <i>00:10.02</i> Отпустил все рычаги<br><br>
+                <font color="#d2691e"><i>00:10.36 </i>Получил уведомление, что БПЛА падает.<br>Нужно было принять меры.</font><br><br><br>
+                <font color="red"><i>00:15.12</i> Беспилотник разбился</font><br><br>
+            </td>
+            <td>
+            <iframe width="800px" height="800px" src="vr2.html"></iframe>
+            </td>
+        </tr>
+    </table>
     <script>
         iframe = document.getElementsByTagName("iframe")[0];
         iframe.contentWindow.setPosition(2,3,5)
