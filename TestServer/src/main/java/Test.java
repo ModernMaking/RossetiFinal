@@ -41,6 +41,7 @@ public class Test {
         public void handle(HttpExchange t) throws IOException {
             float speed = 0;
             String message = "";
+            float vertical_speed = 0;
 
 
             //String text = problem.getFullText();
@@ -69,9 +70,12 @@ public class Test {
 
                 String pressed = param_value.get("pressed");
                 float trackSin = Float.parseFloat(param_value.get("tracksin"));
+                String up = param_value.get("up");
+                float heigth = Float.parseFloat(param_value.get("heigth"));
                 //System.out.println("Pressed: "+pressed);
-                ObjState state = o.getSpeed("1", (pressed.equals("true")), trackSin);
+                ObjState state = o.getSpeed("1", (pressed.equals("true")), trackSin, up.equals("true"), heigth);
                 speed = state.speed;
+                vertical_speed = state.vertical_speed;
                 message = state.message;
             }
 
@@ -84,6 +88,7 @@ public class Test {
             JSONObject jo = new JSONObject();
             jo.put("text", StringEscapeUtils.escapeJava(response));
             jo.put("speed", speed);
+            jo.put("verticalspeed", vertical_speed);
             jo.put("message", StringEscapeUtils.escapeJava(message));
             String jsonStr = jo.toString();
             t.sendResponseHeaders(200, jsonStr.length());

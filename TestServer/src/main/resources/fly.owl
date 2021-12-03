@@ -27,6 +27,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasHeigth -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasHeigth"/>
+    
+
+
     <!-- http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasID -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasID"/>
@@ -45,6 +51,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewVerticalSpeed -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewVerticalSpeed"/>
+    
+
+
     <!-- http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed"/>
@@ -54,6 +66,18 @@
     <!-- http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasTrackSinus -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasTrackSinus"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalAceleration -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalAceleration"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed"/>
     
 
 

@@ -1,3 +1,48 @@
+
+[
+InFloor:
+(?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasID ?id)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasHeigth ?h)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed ?v)
+lessThan(?v, '0'^^http://www.w3.org/2001/XMLSchema#double)
+noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasHeigthRevised)
+lessThan(?h, '0.1'^^http://www.w3.org/2001/XMLSchema#double)
+->
+print("In floor ",?h," v=",?v)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasHeigthRevised '0.1'^^http://www.w3.org/2001/XMLSchema#double)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed '0'^^http://www.w3.org/2001/XMLSchema#double)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalAceleration '0'^^http://www.w3.org/2001/XMLSchema#double)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasMessage "Приземление")
+]
+
+
+[
+    VerticalSpeed:
+    (?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)
+    (?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasID ?id)
+    (?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed ?v)
+    (?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalAceleration ?a)
+    difference(?a, '0.48'^^http://www.w3.org/2001/XMLSchema#double, ?suma)
+    product(?suma, '0.1'^^http://www.w3.org/2001/XMLSchema#double, ?dv)
+    noValue(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasCalcVerticalSpeed)
+    sum(?v, ?dv, ?newv)
+    ->
+    print("Vertical speed ",?newv)
+    (?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewVerticalSpeed ?newv)
+    (?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasCalcVerticalSpeed '0.1'^^http://www.w3.org/2001/XMLSchema#double)
+]
+
+[
+NewVerticalSpeed:
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasNewVerticalSpeed ?newv)
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed ?v)
+notEqual(?v, ?newv)
+->
+print("New vert speed")
+(?o http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed ?newv)
+]
+
 [
 DangerousSpeed:
 (?o rdf:type http://www.semanticweb.org/dns/ontologies/2021/10/fly#PhysicalObject)

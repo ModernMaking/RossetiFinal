@@ -42,6 +42,9 @@
     <iframe width="1200" height="800" src="vr.html" onload="frameload();"></iframe>
     <br><br>
     Ускоряться: <input type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.pressed = this.checked; console.log(this.checked)" name="active"><br>
+
+    Вверх: <input type="checkbox" onchange="var iframe = document.getElementsByTagName('iframe')[0];iframe.contentWindow.up = this.checked; console.log(this.checked)" name="up"><br>
+
     <button value="Ускориться" onclick="">Ускориться</button>
     Угол поворота: <input id="setAngle" type="range" min="-10" max="10" name="degree" step="0.01" value="0" onchange="var iframe = document.getElementsByTagName('iframe')[0]; iframe.contentWindow.add_degree = parseFloat(this.value);"><br>
     <script>
@@ -51,10 +54,18 @@
 
             if (document.getElementById("messages").innerText != msg)
             {
-                ut1 = new SpeechSynthesisUtterance(msg);
-                ut1.pitch = 1;  // пониже
-                ut1.rate = 3;   // побыстрее
-                speechSynthesis.speak(ut1);
+                if (msg != "Приземление" || iframe.contentWindow.vertical_speed<-0.2) {
+
+                    if (msg=="Приземление")
+                    {
+                        msg="Беспилотник разбился. Приземление было слишком жестким"
+                    }
+
+                    ut1 = new SpeechSynthesisUtterance(msg);
+                    ut1.pitch = 1;  // пониже
+                    ut1.rate = 3;   // побыстрее
+                    speechSynthesis.speak(ut1);
+                }
             }
 
             document.getElementById("messages").innerText = msg;

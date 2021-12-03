@@ -94,6 +94,9 @@ public class Ontology {
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#isCalculated"), inf.createTypedLiteral(false) );
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate"), inf.createTypedLiteral(false));
             fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasTrackSinus"), inf.createTypedLiteral(0.0) );
+            fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalAceleration"), inf.createTypedLiteral(0.5) );
+            fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed"), inf.createTypedLiteral(0.0) );
+            fly.addProperty(inf.createDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasHeigth"), inf.createTypedLiteral(0.0) );
         }
 
         while (rs.hasNext())
@@ -104,7 +107,7 @@ public class Ontology {
         return null;
     }
 
-    public ObjState getSpeed(String id, boolean accelerate, float trackSin)
+    public ObjState getSpeed(String id, boolean accelerate, float trackSin, boolean up, float heigth)
     {
         ObjState result = new ObjState();
         result.message = "";
@@ -116,12 +119,13 @@ public class Ontology {
         //return v1;
 
         String queryString = "PREFIX fo: <http://www.semanticweb.org/dns/ontologies/2021/10/fly#> " +
-                "SELECT ?v ?a" +
+                "SELECT ?v ?a ?vs" +
                 " WHERE { " +
                 "?o a fo:PhysicalObject ."+
                 "?o fo:hasID  \"" + id +"\" ." +
                 "?o fo:hasSpeed ?v ." +
-                "?o fo:hasAceleration ?a ." +
+                "?o fo:hasAceleration ?a . " +
+                "?o fo:hasVerticalSpeed ?vs . "+
                 " }";
 
 
@@ -133,15 +137,19 @@ public class Ontology {
             QuerySolution qs = rs.next();
             float v = qs.get("?v").asLiteral().getFloat();
             float a = qs.get("?a").asLiteral().getFloat();
+            float vs = qs.get("?vs").asLiteral().getFloat();
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasSpeed")).changeLiteralObject(v);
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasAceleration")).changeLiteralObject((accelerate) ? 0.2 : 0);
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#needAcelerate")).changeLiteralObject((accelerate));
             fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasTrackSinus")).changeLiteralObject(trackSin);
-
+            fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalAceleration")).changeLiteralObject((up) ? 0.5 : 0);
+            fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasVerticalSpeed")).changeLiteralObject(vs);
+            fly.getProperty(inf.getDatatypeProperty("http://www.semanticweb.org/dns/ontologies/2021/10/fly#hasHeigth")).changeLiteralObject(heigth);
 
             //System.out.println(accelerate ? "acelerate" : "not acelerate");
             //return v;
             result.speed = v;
+            result.vertical_speed = vs;
         }
 
         String queryString1 = "PREFIX fo: <http://www.semanticweb.org/dns/ontologies/2021/10/fly#> " +
