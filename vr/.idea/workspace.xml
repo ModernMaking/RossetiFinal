@@ -49,6 +49,8 @@
       <workItem from="1638511283470" duration="20665000" />
       <workItem from="1638552463144" duration="1190000" />
       <workItem from="1638554879543" duration="4171000" />
+      <workItem from="1638561594636" duration="444000" />
+      <workItem from="1638587548491" duration="1630000" />
     </task>
     <servers />
   </component>
@@ -67,7 +69,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/vr.html</url>
           <line>47</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
